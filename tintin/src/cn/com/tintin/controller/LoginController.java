@@ -13,7 +13,7 @@ public class LoginController {
 	
 	@RequestMapping("longIn")
 	public ModelAndView longIn(){
-		log.info("进入登录方式");
+		log.info("进入登录方式.");
 		return null;
 	}
 }
