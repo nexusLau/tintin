@@ -3,7 +3,7 @@
   <display-name>tintin</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring-config.xml,classpath:spring-mybatis.xml</param-value>
+    <param-value>classpath:spring-config.xml,classpath:spring-mybatis.xml,classpath:spring-constant.xml</param-value>
   </context-param>
   <listener>
     <description>spring监听器</description>
