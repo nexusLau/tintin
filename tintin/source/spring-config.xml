@@ -9,7 +9,7 @@
 	
 	<task:executor id="myexecutor" pool-size="50" queue-capacity="200" keep-alive="5"/>
 	<task:annotation-driven executor="myexecutor" />
-	<context:annotation-config></context:annotation-config>
+	<context:annotation-config/>
 	<!-- 引入属性文件，增加配置文件 -->
 	<context:property-placeholder location="classpath:config.properties" />
 
@@ -18,16 +18,4 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
-	
-	
-<!-- 	<bean id="mapper" class="org.dozer.spring.DozerBeanMapperFactoryBean">
-		<property name="mappingFiles">
-			<list>
-				<value>classpath*:dozer-config/dozerBeanMapping.xml</value>
-			</list>
-		</property>
-	</bean> -->
-	<!-- 引入xml文件  调度暂时不需要
-  	<import resource="classpath*:spring-quartz.xml" />  
-  	-->
 </beans>
