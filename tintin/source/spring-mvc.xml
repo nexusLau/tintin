@@ -37,18 +37,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 			</list>
 		</property>
 	</bean>
-	<!--  
-	<bean id="handlerExceptionResolver" class="com.tintinloan.common.exception.CustomHandlerExceptionResolver">
-
-		<property name="defaultErrorView" value="error" />
-		<property name="defaultStatusCode" value="500"></property>
-	</bean>
-	-->
-<!-- 
-	<mvc:interceptors>
-		<bean class="com.tintinloan.common.interceptor.UserLoginInterceptor"></bean>
-	</mvc:interceptors> -->
-
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
 
@@ -63,7 +51,4 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 			<value>4096</value>
 		</property>
 	</bean>
-<!-- 
-	<import resource="classpath*:spring-action.xml" /> -->
-
 </beans>

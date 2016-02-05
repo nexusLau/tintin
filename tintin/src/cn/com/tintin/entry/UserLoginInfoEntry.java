@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("userLoginInfoEntry")
 public class UserLoginInfoEntry  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
