@@ -6,7 +6,7 @@ package cn.com.tintin.constant;
  *
  * 创建时间：2016-2-5 下午5:01:06
  * 
- * 实现功能：
+ * 实现功能：对git常量的管理
  */
 public class PersonalConstant {
 	
