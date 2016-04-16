@@ -11,10 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.tintin.constant.PersonalConstant;
 import cn.com.tintin.service.user.IUserLoginInfoService;
+import cn.com.tintin.util.ApplicationContextUtil;
 
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
 
 	private  Logger log = LoggerFactory.getLogger(LoginController.class);
 	
@@ -23,6 +24,9 @@ public class LoginController {
 	
 	@Resource
 	private PersonalConstant personalConstant;
+	
+	@Autowired
+	private ApplicationContextUtil applicationContextUtil;
 	
 	@RequestMapping("/longIn")
 	public ModelAndView longIn(String id){

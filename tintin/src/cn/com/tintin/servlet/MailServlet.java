@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MailServlet")
 public class MailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void init() throws ServletException {
+		//重写init方法。写一个周期任务
+		super.init();
+	}
 
     /**
      * Default constructor. 
