@@ -34,6 +34,10 @@ public class LoginController extends BaseController{
 		System.out.println(name);
 		System.out.println(personalConstant.getUserName());
 		log.info("进入登录方式.12345678");
-		return null;
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("name",name);
+		mav.addObject("id",id);
+		mav.setViewName("jsp/user/login");
+		return mav;
 	}
 }
