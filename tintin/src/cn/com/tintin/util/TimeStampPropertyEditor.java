@@ -10,6 +10,11 @@ import org.apache.commons.lang.time.DateUtils;
 
 import com.alibaba.druid.util.StringUtils;
 
+/**
+ * Springmvc数据绑定时间戳的通用方法
+ * @author LiuMaoyang
+ *
+ */
 public class TimeStampPropertyEditor extends PropertyEditorSupport {
 	
 	 private String pattern = "yyyy-MM-dd HH:mm:ss.S";

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 
 public class DataTypeUtil {
+	
 	   public static boolean isNumeric(String str)
 	    {
 	        if (null == str || str.equals("") || str.equals("null"))

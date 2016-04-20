@@ -3,7 +3,11 @@ package cn.com.tintin.util;
 import java.util.regex.Pattern;
 
 
-
+/**
+ * 相关验证的通用方法
+ * @author LiuMaoyang
+ *
+ */
 public class ValidatorUtils {
 	  /**
      * 检查是否为中文名称

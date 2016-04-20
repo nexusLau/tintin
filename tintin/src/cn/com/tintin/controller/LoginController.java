@@ -40,4 +40,6 @@ public class LoginController extends BaseController{
 		mav.setViewName("jsp/user/login");
 		return mav;
 	}
+	
+
 }
