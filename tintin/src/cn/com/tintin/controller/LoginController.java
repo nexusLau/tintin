@@ -1,20 +1,27 @@
 package cn.com.tintin.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.tintin.constant.PersonalConstant;
 import cn.com.tintin.service.user.IUserLoginInfoService;
 import cn.com.tintin.util.ApplicationContextUtil;
+import cn.com.tintin.vo.UserLoginInfoVo;
 
 
 @Controller
+@RequestMapping("/user")
 public class LoginController extends BaseController{
 
 	private  Logger log = LoggerFactory.getLogger(LoginController.class);
@@ -28,6 +35,11 @@ public class LoginController extends BaseController{
 	@Autowired
 	private ApplicationContextUtil applicationContextUtil;
 	
+	/**
+	 * 简单的跳转方法
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/longIn")
 	public ModelAndView longIn(String id){
 		String name=userLoginInfoService.getUserNameById(id);
@@ -38,8 +50,25 @@ public class LoginController extends BaseController{
 		mav.addObject("name",name);
 		mav.addObject("id",id);
 		mav.setViewName("jsp/user/login");
-		return mav;
+		return mav; 
 	}
 	
-
+   @RequestMapping("/getUserList")
+   public @ResponseBody UserLoginInfoVo getUserList(HttpServletRequest request,HttpServletResponse response){
+	return null;
+	   
+   }
+	@RequestMapping("/forwardUserList")
+   public String  forwardUserList(HttpServletRequest request,HttpServletResponse response){
+	   return "jsp/user/userList";
+   }
+	@RequestMapping("loginOut")
+   public ModelAndView loginOut(HttpServletRequest request,HttpServletResponse response,String name){
+	  try {
+		System.out.println(new String(name.getBytes("iso8859-1"),"utf-8"));
+	} catch (UnsupportedEncodingException e) {
+		e.printStackTrace();
+	} 
+	   return null;
+   }
 }
