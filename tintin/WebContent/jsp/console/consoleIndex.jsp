@@ -8,7 +8,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Complex Layout - jQuery EasyUI Demo</title>
+	<title>后台管理系统</title>
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>js/plugins/easyUi/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>js/plugins/easyUi/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="<%=basePath %>js/plugins/easyUi/demo.css">
@@ -18,22 +18,26 @@
 <body>
 	<h2>后台管理系统</h2>
 	<div style="margin:20px 0;"></div>
-	<div class="easyui-layout" style="width:700px;height:350px;">
-		<div data-options="region:'north'" style="height:50px"></div>
+	<div class="easyui-layout" style="width:1440px;height:720px;">
+		<div data-options="region:'north'" style="height:50px">
+		</div>
 		<div data-options="region:'south',split:true" style="height:50px;"></div>
-		<div data-options="region:'east',split:true" title="East" style="width:180px;">
+		<div data-options="region:'east',split:true" title="East" style="width:250px;">
 			<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
 		</div>
-		<div data-options="region:'west',split:true" title="West" style="width:100px;">
+		<div data-options="region:'west',split:true" title="West" style="width:250px;">
 			<div class="easyui-accordion" data-options="fit:true,border:false">
 				<div title="Title1" style="padding:10px;">
-					content1
+					内容1
 				</div>
 				<div title="Title2" data-options="selected:true" style="padding:10px;">
-					content2
+					内容2
 				</div>
 				<div title="Title3" style="padding:10px">
-					content3
+					内容4
+				</div>
+					<div title="Title4" style="padding:10px">
+					内容5
 				</div>
 			</div>
 		</div>

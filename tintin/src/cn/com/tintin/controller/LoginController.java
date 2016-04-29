@@ -45,7 +45,7 @@ public class LoginController extends BaseController{
 		String name=userLoginInfoService.getUserNameById(id);
 		System.out.println(name);
 		System.out.println(personalConstant.getUserName());
-		log.info("进入登录方式.12345678");
+		//log.info("进入登录方式.12345678");
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("name",name);
 		mav.addObject("id",id);
