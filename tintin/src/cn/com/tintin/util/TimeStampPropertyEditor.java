@@ -27,7 +27,6 @@ public class TimeStampPropertyEditor extends PropertyEditorSupport {
 	    }
 	 
     public TimeStampPropertyEditor(String pattern) {
-        // TODO Auto-generated constructor stub
         this.pattern = pattern;
     }
     @Override

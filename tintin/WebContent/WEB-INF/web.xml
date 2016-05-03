@@ -36,6 +36,30 @@
   <listener>
     <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
   </listener>
+  
+   <!-- 页面伪静态化的urlReWriter -->
+     <filter>
+        <filter-name>urlReWriter</filter-name>
+        <filter-class>cn.com.tintin.filter.UrlRewriterFilter</filter-class>
+        <init-param>
+            <param-name>excludes</param-name>
+            <param-value>.*\.js,.*\.css,/,/index.html,/static/.*</param-value>
+        </init-param>
+        <init-param>
+            <param-name>includes</param-name>
+            <param-value>
+                /(.*)-(\w+)-(\w+)\.html:/WEB-INF/jsps/$1.jsp?name=$2&amp;page=$3,
+                /(.*)-(\w+)\.html:/WEB-INF/jsps/$1.jsp?name=$2,
+                /(.*)\.html:/WEB-INF/jsps/$1.jsp
+            </param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>urlReWriter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

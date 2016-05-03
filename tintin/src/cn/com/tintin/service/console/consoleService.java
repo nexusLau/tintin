@@ -1,6 +1,10 @@
 package cn.com.tintin.service.console;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import cn.com.tintin.vo.console.PlantformFunctionVo;
 
 
 /**
@@ -13,5 +17,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class consoleService implements IConsoleService {
+	
+	public List<PlantformFunctionVo> getFunctionList(String parentId){
+		return null;
+	}
 	
 }
