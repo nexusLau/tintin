@@ -18,10 +18,10 @@
 <body>
 	<h2>后台管理系统</h2>
 	<div style="margin:20px 0;"></div>
-	<div class="easyui-layout" style="width:1440px;height:720px;">
+	<div class="easyui-layout" style="width:100%;height:900px;">
 		<div data-options="region:'north'" style="height:50px">
 		</div>
-		<div data-options="region:'south',split:true" style="height:50px;"></div>
+		<div data-options="region:'south',split:true" style="height:50px;">111</div>
 		<div data-options="region:'east',split:true" title="East" style="width:250px;">
 			<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
 		</div>
@@ -45,8 +45,7 @@
 			<div class="easyui-tabs" data-options="fit:true,border:false,plain:true">
 				<div title="About" data-options="href:'_content.html'" style="padding:10px"></div>
 				<div title="DataGrid" style="padding:5px">
-					<table class="easyui-datagrid"
-							data-options="url:'datagrid_data1.json',method:'get',singleSelect:true,fit:true,fitColumns:true">
+					<table class="easyui-datagrid" data-options="url:'datagrid_data1.json',method:'get',singleSelect:true,fit:true,fitColumns:true">
 						<thead>
 							<tr>
 								<th data-options="field:'itemid'" width="80">Item ID</th>
@@ -58,6 +57,9 @@
 							</tr>
 						</thead>
 					</table>
+				</div>
+				<div title="其他" style="padding:5px">
+				
 				</div>
 			</div>
 		</div>

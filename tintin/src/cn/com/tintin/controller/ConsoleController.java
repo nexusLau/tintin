@@ -14,11 +14,14 @@ public class ConsoleController   extends BaseController{
 	
 	
 	
+	
+	
+	
 	/**
 	 * 跳转到后台的管理页面
 	 * @return
 	 */
-	@RequestMapping("/inex")
+	@RequestMapping("/index")
 	public String loginIndex(){
 		return "jsp/console/consoleIndex";
 	}
