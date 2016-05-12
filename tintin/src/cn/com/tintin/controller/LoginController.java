@@ -1,6 +1,7 @@
 package cn.com.tintin.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.tintin.constant.PersonalConstant;
+import cn.com.tintin.entry.UserLoginInfoEntry;
 import cn.com.tintin.service.user.IUserLoginInfoService;
 import cn.com.tintin.util.ApplicationContextUtil;
 import cn.com.tintin.vo.UserLoginInfoVo;
@@ -71,4 +73,10 @@ public class LoginController extends BaseController{
 	} 
 	   return null;
    }
+	
+	  @RequestMapping("/getUserInfoPage")
+	public void getUserInfoPage(HttpServletRequest request,HttpServletResponse response){
+		  List<UserLoginInfoEntry> list = userLoginInfoService.getUserInfoPage();
+		  System.out.println(list.size());
+	}
 }

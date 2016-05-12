@@ -25,13 +25,13 @@
 		<div data-options="region:'east',split:true" title="East" style="width:250px;">
 			<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
 		</div>
-		<div data-options="region:'west',split:true" title="West" style="width:250px;">
+		<div data-options="region:'west',split:true" title="功能列表" style="width:250px;">
 			<div class="easyui-accordion" data-options="fit:true,border:false">
-				<div title="Title1" style="padding:10px;">
-					内容1
+				<div title="用户管理" style="padding:10px;">
+					
 				</div>
 				<div title="Title2" data-options="selected:true" style="padding:10px;">
-					内容2
+					
 				</div>
 				<div title="Title3" style="padding:10px">
 					内容4

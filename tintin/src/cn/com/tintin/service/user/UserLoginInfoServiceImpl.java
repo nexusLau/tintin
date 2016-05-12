@@ -1,5 +1,7 @@
 package cn.com.tintin.service.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class UserLoginInfoServiceImpl implements IUserLoginInfoService{
 	@Override
 	public UserLoginInfoEntry getUserInfoById(long id) {
 		return userLoginDao.getUserInfoById(id);
+	}
+
+	@Override
+	public List<UserLoginInfoEntry> getUserInfoPage() {
+		return userLoginDao.getUserInfoPage();
 	}
 	
 }

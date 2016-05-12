@@ -13,10 +13,6 @@ public class ConsoleController   extends BaseController{
 	private  Logger log = LoggerFactory.getLogger(ConsoleController.class);
 	
 	
-	
-	
-	
-	
 	/**
 	 * 跳转到后台的管理页面
 	 * @return
@@ -25,5 +21,7 @@ public class ConsoleController   extends BaseController{
 	public String loginIndex(){
 		return "jsp/console/consoleIndex";
 	}
+	
+	
 	
 }

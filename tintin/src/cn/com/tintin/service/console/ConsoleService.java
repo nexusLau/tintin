@@ -2,6 +2,8 @@ package cn.com.tintin.service.console;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 
 import cn.com.tintin.vo.console.PlantformFunctionVo;
@@ -16,9 +18,10 @@ import cn.com.tintin.vo.console.PlantformFunctionVo;
  * 实现功能：后台控制的service
  */
 @Service
-public class consoleService implements IConsoleService {
+public class ConsoleService implements IConsoleService {
 	
 	public List<PlantformFunctionVo> getFunctionList(String parentId){
+		
 		return null;
 	}
 	
