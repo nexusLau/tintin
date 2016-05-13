@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import cn.com.tintin.entry.UserLoginInfoEntry;
 import cn.com.tintin.mapper.IUserLoginMapper;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
 
@@ -42,8 +43,9 @@ public class UserLoginDaoImpl   implements IUserLoginDao {
 			try {
 				sqlSession=sqlSessionFactory.getObject().openSession();
 				IUserLoginMapper userLoginMapper=sqlSession.getMapper(IUserLoginMapper.class);
-				PageHelper.startPage(1,20);
+				PageHelper.startPage(1,20,true);
 			    List<UserLoginInfoEntry> list = userLoginMapper.selectAll();
+				Page<UserLoginInfoEntry> page=new Page<UserLoginInfoEntry>();
 			    return list;
 			} catch (Exception e) {
 				e.printStackTrace();
