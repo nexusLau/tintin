@@ -7,4 +7,9 @@
 					USER_ID=#{id}
 				</where> 
 		</select>
+		
+		
+		<select id="getUserInfoPage"  resultType="cn.com.tintin.entry.UserLoginInfoEntry">
+			SELECT * FROM USER_LOGIN_INFO 
+		</select>
 </mapper>

@@ -12,6 +12,7 @@ import cn.com.tintin.entry.UserLoginInfoEntry;
 import cn.com.tintin.mapper.IUserLoginMapper;
 import cn.com.tintin.vo.common.PageInfo;
 
+import com.github.pagehelper.ISelect;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
@@ -41,14 +42,18 @@ public class UserLoginDaoImpl   implements IUserLoginDao {
 	@Override
 	public List<UserLoginInfoEntry> getUserInfoPage(){
 		SqlSession sqlSession = null;
-			try {
-				sqlSession=sqlSessionFactory.getObject().openSession();
-				IUserLoginMapper userLoginMapper=sqlSession.getMapper(IUserLoginMapper.class);
-				PageHelper.startPage(1,20,true);
-				PageInfo<UserLoginInfoEntry> page=userLoginMapper.getUserInfoPage();
-				System.out.println(page.getTotal());
-			   // List<UserLoginInfoEntry> list = userLoginMapper.selectAll();
-			    return null;
+		try {
+		sqlSession=sqlSessionFactory.getObject().openSession();
+		final IUserLoginMapper userLoginMapper=sqlSession.getMapper(IUserLoginMapper.class);
+			   Page<UserLoginInfoEntry> page=PageHelper.startPage(1, 20).doSelectPage(new ISelect() {
+				
+				@Override
+				public void doSelect() {
+					  userLoginMapper.selectAll();
+				}
+			});
+			   System.out.println(page.getTotal());
+				return null;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
