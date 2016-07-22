@@ -11,7 +11,7 @@
 	<task:annotation-driven executor="myexecutor" />
 	<context:annotation-config/>
 	<!-- 引入属性文件，增加配置文件 -->
-	<context:property-placeholder location="classpath:config.properties" />
+	<context:property-placeholder location="classpath:config.properties"  />
 
 	<!-- 自动扫描(自动注入) -->
 	<context:component-scan base-package="cn.com.tintin">
