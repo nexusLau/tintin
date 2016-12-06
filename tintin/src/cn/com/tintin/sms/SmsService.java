@@ -24,11 +24,13 @@ public class SmsService {
 
 	private static String USERS="Users";
 
-	
+	/**
+	 * 拼接xml的方式
+	 */
 	public void smsXML(){
 		   //DocumentHelper提供了创建Document对象的方法  
         Document document = DocumentHelper.createDocument();  
-        Element  rootElement=document.addElement("SUBMIT"); 
+        Element  rootElement=document.addElement("SUBMIT");
 	}
 	
 	
@@ -38,7 +40,7 @@ public class SmsService {
 	 * @param userName
 	 * @param password
 	 * @param serviceId
-	 * @param sernderId
+	 * @param senderId
 	 * @param level
 	 * @param message
 	 * @param users
@@ -55,6 +57,18 @@ public class SmsService {
 		params[6]=new BasicNameValuePair(SmsService.MESSAGE, message);
 		params[7]=new BasicNameValuePair(SmsService.USERS, users);
 		return params;
+	}
+
+
+	/**
+	 * 替换xml中的特殊符号
+	 * @param xml
+	 */
+	public  void repalceSing(String xml){
+		xml.replace("&"," &amp;");
+		xml.replace("<"," &lt;");
+		xml.replace(">"," &gt;");
+		System.out.println(xml);
 	}
 
 }
