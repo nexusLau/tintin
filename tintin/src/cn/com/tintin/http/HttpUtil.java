@@ -1,12 +1,25 @@
 package cn.com.tintin.http;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.util.JSONUtils;
+import net.sf.json.util.PropertyFilter;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.BasicHttpEntity;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 public class HttpUtil {
 
@@ -61,7 +74,56 @@ public class HttpUtil {
 	 * @param totken
 	 * @param body
 	 */
-	public void doPost(String url,String totken,Object body,NameValuePair[] params){
-		
+	public void doPost(String url,String totken,Object body,NameValuePair[] params) throws  Exception {
+		HttpPost httpPost=new HttpPost(url);
+		/*for(NameValuePair param:params){
+			httpPost.getParams().setParameter(param.getName(),param.getValue());
+		}*/
+		//httpPost.setHeader("auth-token",token);
+		httpPost.setHeader("Content-Type","application/json");
+		this.setRequestBody(httpPost,body);
+		httpClient=getHttpClinet();
+		HttpResponse httpResponse=null;
+		try {
+			httpResponse = httpClient.execute(httpPost);
+			String result=EntityUtils.toString(httpResponse.getEntity());
+			System.out.println(result);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw  e;
+		}
+
+	}
+	private void setRequestBody(HttpEntityEnclosingRequestBase http,Object params){
+		String jsonStr="";
+		if(params != null){
+			JsonConfig jsonConfig=new JsonConfig();
+			jsonConfig.setJsonPropertyFilter(new PropertyFilter() {
+				@Override
+				public boolean apply(Object source, String name, Object value) {
+					if(value==null){
+						return  true;
+					}
+					return  false;
+				}
+			});
+			if (JSONUtils.isArray(params)){
+				jsonStr= JSONArray.fromObject(params,jsonConfig).toString();
+			}else {
+				jsonStr= JSONObject.fromObject(params,jsonConfig).toString();
+			}
+			StringEntity entity=null;
+			try {
+				entity=new StringEntity(jsonStr.toString(),"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			http.setEntity(entity);
+		}
+
+	}
+
+	public static void main(String[] args) {
+
 	}
 }

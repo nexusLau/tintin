@@ -1,5 +1,6 @@
 package cn.com.tintin.sms;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.dom4j.Document;
@@ -24,16 +25,41 @@ public class SmsService {
 
 	private static String USERS="Users";
 
+
+	public void  smsLoginXml(String steamId,String loginId,  String name,String key){
+		Document document = DocumentHelper.createDocument();
+		Element rootElement = document.addElement("root");
+		Element steamElement = rootElement.addElement("steam");
+		steamElement.addAttribute("id",steamId);
+		Element loginElement = rootElement.addElement("login");
+		loginElement.addAttribute("id",loginId);
+		loginElement.addAttribute("name",name);
+		loginElement.addAttribute("key",key);
+		String xml=document.asXML();
+		System.out.println(xml);
+	}
+
+
 	/**
 	 * 拼接xml的方式
 	 */
-	public void smsXML(){
+	public void smsXML(String serviceID,String messange,String users,String level,String senderId){
 		   //DocumentHelper提供了创建Document对象的方法  
         Document document = DocumentHelper.createDocument();  
         Element  rootElement=document.addElement("SUBMIT");
+		Element serviceIDElement = rootElement.addElement("ServiceID");
+		serviceIDElement.addText(serviceID);
+		Element messageElement = rootElement.addElement("Message");
+		messageElement.addText(messange);
+		Element usersElement = rootElement.addElement("Users");
+		usersElement.addText(users);
+		Element levelElement = rootElement.addElement("Level");
+		levelElement.addText(level);
+		Element senderElement = rootElement.addElement("SenderID");
+		senderElement.addText(senderId);
+		String xml=document.asXML();
+		System.out.println(xml);
 	}
-	
-	
 	/**
 	 * 拼装发送参数
 	 * @param sourceId
@@ -71,4 +97,8 @@ public class SmsService {
 		System.out.println(xml);
 	}
 
+	public static void main(String[] args) {
+		SmsService sms=new SmsService();
+		sms.smsLoginXml("123456","16888","incloudos","123456a?");
+	}
 }
