@@ -1,11 +1,14 @@
 package cn.com.tintin.sms;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 public class SmsService {
 	
@@ -26,7 +29,7 @@ public class SmsService {
 	private static String USERS="Users";
 
 
-	public void  smsLoginXml(String steamId,String loginId,  String name,String key){
+	public String  smsLoginXml(String steamId,String loginId,  String name,String key){
 		Document document = DocumentHelper.createDocument();
 		Element rootElement = document.addElement("root");
 		Element steamElement = rootElement.addElement("steam");
@@ -37,13 +40,14 @@ public class SmsService {
 		loginElement.addAttribute("key",key);
 		String xml=document.asXML();
 		System.out.println(xml);
+		return xml;
 	}
 
 
 	/**
 	 * 拼接xml的方式
 	 */
-	public void smsXML(String serviceID,String messange,String users,String level,String senderId){
+	public String smsXML(String serviceID,String messange,String users,String level,String senderId){
 		   //DocumentHelper提供了创建Document对象的方法  
         Document document = DocumentHelper.createDocument();  
         Element  rootElement=document.addElement("SUBMIT");
@@ -59,6 +63,7 @@ public class SmsService {
 		senderElement.addText(senderId);
 		String xml=document.asXML();
 		System.out.println(xml);
+		return xml;
 	}
 	/**
 	 * 拼装发送参数
@@ -84,6 +89,32 @@ public class SmsService {
 		params[7]=new BasicNameValuePair(SmsService.USERS, users);
 		return params;
 	}
+	
+	public void parseLoginXml(String xmlStr) throws DocumentException{
+	    Document document = DocumentHelper.parseText(xmlStr);
+	    Element rootElement = document.getRootElement();
+	    Element steamElement = rootElement.element("steam");
+	    System.out.println(steamElement.attributeValue("id"));
+	    Element loginElement = rootElement.element("login");
+	    System.out.println(loginElement.attributeValue("id"));
+	    System.out.println(loginElement.attributeValue("name"));
+	    System.out.println(loginElement.attributeValue("key"));
+	}
+	public void parseSumbitXml(String xmlStr) throws DocumentException{
+		   Document document = DocumentHelper.parseText(xmlStr);
+		   Element rootElement = document.getRootElement();
+		   Element serviceElement = rootElement.element("ServiceID");
+		   Element messageElement = rootElement.element("Message");
+		   Element usersElement = rootElement.element("Users");
+		   Element levelElement = rootElement.element("Level");
+		   Element senderElement = rootElement.element("SenderID");
+		   System.out.println(serviceElement.getText());
+		   System.out.println(messageElement.getText());
+		   System.out.println(usersElement.getText());
+		   System.out.println(levelElement.getText());
+		   System.out.println(senderElement.getText());
+		   
+	}
 
 
 	/**
@@ -97,8 +128,9 @@ public class SmsService {
 		System.out.println(xml);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DocumentException {
 		SmsService sms=new SmsService();
-		sms.smsLoginXml("123456","16888","incloudos","123456a?");
+		String xmlStr=sms.smsXML("OAKSM", "测试短信", "18600147366", "1", "incloudos");
+		sms.parseSumbitXml(xmlStr);
 	}
 }

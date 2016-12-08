@@ -49,7 +49,7 @@ public class HttpUtil {
 	 * @param url
 	 * @param params
 	 */
-	public void doGet(String url,NameValuePair[] params){
+	public String doGet(String url,NameValuePair[] params)  throws  Exception{
 		if(null!=params){
 			url=url.concat("?");
 			for(NameValuePair param :params){
@@ -64,8 +64,10 @@ public class HttpUtil {
 			res=httpClient.execute(get);
 			String result=EntityUtils.toString(res.getEntity());
 			System.out.println(result);
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	/**
@@ -74,7 +76,7 @@ public class HttpUtil {
 	 * @param totken
 	 * @param body
 	 */
-	public void doPost(String url,String totken,Object body,NameValuePair[] params) throws  Exception {
+	public String  doPost(String url,String totken,Object body,NameValuePair[] params) throws  Exception {
 		HttpPost httpPost=new HttpPost(url);
 		/*for(NameValuePair param:params){
 			httpPost.getParams().setParameter(param.getName(),param.getValue());
@@ -88,6 +90,7 @@ public class HttpUtil {
 			httpResponse = httpClient.execute(httpPost);
 			String result=EntityUtils.toString(httpResponse.getEntity());
 			System.out.println(result);
+			return result;
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw  e;
