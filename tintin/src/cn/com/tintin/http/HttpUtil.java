@@ -5,6 +5,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.JSONUtils;
 import net.sf.json.util.PropertyFilter;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -17,6 +18,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.util.EntityUtils;
+
+import cn.com.tintin.sms.SmsService;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -126,7 +129,12 @@ public class HttpUtil {
 
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws  Exception{
+		HttpUtil httpUtil=new HttpUtil();
+		String url="http://localhost:8080/tintin/sms/receiveSms.ding";
+		SmsService service=new SmsService();
+		NameValuePair[] params = service.getSmsPair("netgain", "incloudos", "123456a?", "FRSMS", "ibase", "1", "testSms", "18600147366");
+		httpUtil.doGet(url, params);
+		
 	}
 }

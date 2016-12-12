@@ -8,6 +8,9 @@ import org.apache.http.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.com.tintin.vo.ResultVo;
 
 @Controller
 public class RestController {
@@ -17,17 +20,21 @@ public class RestController {
 		System.out.println(id);
 	}
 	
+	@RequestMapping("/sms/receiveXmlSms")
+	public void receiveSmsXmlMessage(HttpServletRequest request,HttpServletResponse response){
+		
+	}
 	
 	@RequestMapping("/sms/receiveSms")
-	public void  receiveSmsMessage(HttpServletRequest request,HttpServletResponse response){
-		String sourceId=request.getParameter("sourceId");
-		String userName=request.getParameter("userName");
-		String password=request.getParameter("password");
-		String serviceId=request.getParameter("serviceId");
-		String senderId=request.getParameter("senderId");
-		String level=request.getParameter("level");
-		String message=request.getParameter("message");
-		String users=request.getParameter("users");
+	public @ResponseBody ResultVo  receiveSmsMessage(HttpServletRequest request,HttpServletResponse response){
+		String sourceId=request.getParameter("SourceID");
+		String userName=request.getParameter("UserName");
+		String password=request.getParameter("Password");
+		String serviceId=request.getParameter("ServiceID");
+		String senderId=request.getParameter("SenderID");
+		String level=request.getParameter("Level");
+		String message=request.getParameter("Message");
+		String users=request.getParameter("Users");
 		System.out.println(sourceId);
 		System.out.println(userName);
 		System.out.println(password);
@@ -36,6 +43,11 @@ public class RestController {
 		System.out.println(level);
 		System.out.println(message);
 		System.out.println(users);
+		ResultVo vo =new ResultVo();
+		vo.setFlag(true);
+		vo.setResCode("sms Success");
+		vo.setResData("test ok");
+		return vo;
 	}
 	
 }
