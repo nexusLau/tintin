@@ -5,15 +5,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.dom4j.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.com.tintin.sms.SmsService;
 import cn.com.tintin.vo.ResultVo;
 
 @Controller
 public class RestController {
+	
+	@Autowired
+	private SmsService smsService;
 	
 	@RequestMapping("/{id}")
 	public void getId(@PathVariable String id ){
@@ -21,8 +27,15 @@ public class RestController {
 	}
 	
 	@RequestMapping("/sms/receiveXmlSms")
-	public void receiveSmsXmlMessage(HttpServletRequest request,HttpServletResponse response){
-		
+	public  @ResponseBody ResultVo receiveSmsXmlMessage(HttpServletRequest request,HttpServletResponse response,String xmlMessage){
+		ResultVo resultVo=new ResultVo();
+		try {
+			smsService.parseSumbitXml(xmlMessage);
+		} catch (DocumentException e) {
+			resultVo.setFlag(false);
+			e.printStackTrace();
+		}
+		return resultVo;
 	}
 	
 	@RequestMapping("/sms/receiveSms")

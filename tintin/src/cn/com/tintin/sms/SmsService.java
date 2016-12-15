@@ -9,7 +9,9 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SmsService {
 	
 	private static String SOURCEID="SourceID";
