@@ -3,8 +3,11 @@ package cn.com.tintin.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cn.com.tintin.sms.SmsService;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.dom4j.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,9 @@ import cn.com.tintin.vo.ResultVo;
 
 @Controller
 public class RestController {
+
+	@Autowired
+	private SmsService smsService;
 	
 	@RequestMapping("/{id}")
 	public void getId(@PathVariable String id ){
@@ -21,8 +27,12 @@ public class RestController {
 	}
 	
 	@RequestMapping("/sms/receiveXmlSms")
-	public void receiveSmsXmlMessage(HttpServletRequest request,HttpServletResponse response){
-		
+	public void receiveSmsXmlMessage(HttpServletRequest request,HttpServletResponse response,String submitXml){
+		try {
+			smsService.parseLoginXml(submitXml);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping("/sms/receiveSms")
